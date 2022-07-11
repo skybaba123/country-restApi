@@ -1,0 +1,131 @@
+main {
+  min-height: 100vh;
+}
+.input-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 2rem;
+  padding-left: 6rem;
+  padding-right: 6rem;
+}
+
+.search {
+  transform: translateX(1.5rem);
+  cursor: pointer;
+  z-index: 100;
+}
+
+#input {
+  height: 3rem;
+  width: 24rem;
+  max-width: 80%;
+  padding-left: 3rem;
+  border-radius: 5px;
+}
+
+#select {
+  width: 10rem;
+  padding-left: 1rem;
+  color: rgb(126, 123, 123);
+  border-radius: 5px;
+}
+
+#select,
+#input,
+option {
+  border: none;
+  font-family: "Kumbh Sans", sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+option {
+  color: rgb(110, 110, 110);
+}
+
+.option {
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+}
+
+option:active,
+option:focus {
+  border: none;
+}
+
+.movie-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 2rem;
+  padding-left: 6rem;
+  padding-right: 6rem;
+}
+
+@media only screen and (max-width: 412px) {
+  .movie-container {
+    transform: translateX(1.5rem);
+  }
+}
+
+@media only screen and (max-width: 497px) {
+  .main-input {
+    transform: translateX(-5rem);
+    display: flex;
+    justify-content: center;
+    width: 340px;
+  }
+
+  .search {
+    position: relative;
+    left: 2rem;
+    transform: translateY(1rem);
+    cursor: pointer;
+    z-index: 100;
+  }
+
+  #select {
+    transform: translateX(-2rem);
+    margin-top: 2rem;
+    width: 10rem;
+    padding-left: 1rem;
+    height: 50px;
+    color: rgb(126, 123, 123);
+    border-radius: 5px;
+  }
+}
+
+@media only screen and (max-width: 280px) {
+  .movie-container {
+    transform: translateX(2rem);
+    width: 500px;
+  }
+}
+
+@media only screen and (max-width: 360px) {
+  .movie-container {
+    transform: translateX(-2rem);
+  }
+}
+
+/* @media only screen and (max-width: 376px) {
+  .main-input {
+    transform: translateX(-5rem);
+  }
+
+  #input {
+    transform: translateX(-1rem);
+  }
+
+  .search {
+    position: relative;
+    left: 2rem;
+    transform: translateY(1rem);
+  }
+
+  #select {
+    transform: translateX(-3rem);
+  }
+} */

@@ -1,0 +1,31 @@
+.country {
+  margin-right: 4rem;
+  margin-bottom: 4rem;
+  width: 250px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border-radius: 0.5rem;
+}
+
+.country-image {
+  width: 250px;
+  height: 150px;
+  border-radius: 10px 10px 0px 0px;
+}
+
+.country-data {
+  width: 250px;
+  height: 150px;
+  padding-left: 1rem;
+  padding-top: 1rem;
+}
+
+.country-name {
+  font-size: 18px;
+  margin-bottom: 1rem;
+}
+
+@media only screen and (max-width: 412px) {
+  .country {
+    transform: translateX(-1.25rem);
+  }
+}
