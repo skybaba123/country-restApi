@@ -1,10 +1,8 @@
 import React from "react";
 import "./Movie.css";
-
 import { Link } from "react-router-dom";
 
 const Movie = ({
-  country,
   countryName,
   countryFlag,
   population,
@@ -17,7 +15,7 @@ const Movie = ({
       style={{ background: toggleDarkmode ? "hsl(209, 23%, 22%)" : "" }}
       className="country"
     >
-      <Link to="details">
+      <Link to={`/details/${countryName}`}>
         <img className="country-image" src={countryFlag} alt="country" />
         <div className="country-data">
           <h2

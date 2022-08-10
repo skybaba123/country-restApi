@@ -1,10 +1,11 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useCallback } from "react";
 import "./Body.css";
 import { FaSearch } from "react-icons/fa";
 import { motion } from "framer-motion";
 import Movie from "./Movie";
 
 const Body = ({
+  error,
   toggle,
   toggleDarkmode,
   fechCountries,
@@ -13,34 +14,29 @@ const Body = ({
 }) => {
   // const [searchCountry, setSearchCountry] = useState([]);
   const [input, setInput] = useState("");
-  const [filterInput, setFilterInput] = useState("");
-
-  useEffect(() => {
-    if (input === "" && !filterInput) {
-      fechCountries();
-    } else if (input.length > 0) {
-      searchForCountry();
-    } else if (filterInput) {
-      filtering();
-    }
-  }, [input, filterInput]);
-
+  const filterInput = useRef();
   const inputRef = useRef();
 
-  const searchForCountry = () => {
+  const searchForCountry = useCallback(() => {
     const search = country.filter((con) =>
       con.name.common.includes(input.charAt(0).toUpperCase() + input.slice(1))
     );
     setCountry(search);
-  };
+  }, [country, input, setCountry]);
 
   const filtering = () => {
-    const filter = country.filter((con) =>
-      con.continents[0].includes(filterInput)
-    );
-
+    const input = filterInput.current.value;
+    const filter = country.filter((con) => con.continents[0].includes(input));
     setCountry(filter);
   };
+
+  useEffect(() => {
+    if (input === "") {
+      fechCountries();
+    } else if (input.length > 0) {
+      searchForCountry();
+    }
+  }, [input]);
 
   return (
     <main style={{ background: toggleDarkmode ? "hsl(207, 26%, 17%)" : "" }}>
@@ -62,10 +58,9 @@ const Body = ({
 
         <select
           style={{ background: toggleDarkmode ? "hsl(209, 23%, 22%)" : "" }}
-          value={filterInput}
-          onClick={filtering}
-          onChange={(e) => setFilterInput(e.target.value)}
           id="select"
+          ref={filterInput}
+          onChange={filtering}
           name="Filter by Region"
         >
           <option defaultValue="Filter by Region">Filter by Region</option>
@@ -80,11 +75,12 @@ const Body = ({
       </div>
 
       <motion.div layout className="movie-container">
-        {country.length < 1 ? (
+        {country?.length < 1 ? (
           <h2>Loading...</h2>
         ) : (
           country.map((con) => (
             <Movie
+              error={error}
               country={country}
               toggleDarkmode={toggleDarkmode}
               toggle={toggle}
